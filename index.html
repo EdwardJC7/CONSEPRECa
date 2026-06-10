@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ing. Civil — Servicios Profesionales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul-profundo: #1B3A5C;
+    --azul-medio: #2D6A9F;
+    --azul-claro: #5A9BC4;
+    --dorado: #C8952A;
+    --dorado-claro: #E8B84B;
+    --gris-bg: #F0F4F8;
+    --gris-linea: #D1DCE8;
+    --gris-texto: #4A5568;
+    --blanco: #FFFFFF;
+    --negro-suave: #1A202C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--negro-suave);
+    background: var(--blanco);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(27, 58, 92, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    border-bottom: 2px solid var(--dorado);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--dorado); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dorado-claro); }
+
+  .nav-cta {
+    background: var(--dorado);
+    color: var(--azul-profundo) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--dorado-claro) !important; color: var(--azul-profundo) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--azul-profundo);
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+
+  /* Grid de plano estructural de fondo */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(45,106,159,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,106,159,0.15) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Línea diagonal distintiva */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 55%;
+    height: 130%;
+    background: linear-gradient(135deg, var(--azul-medio) 0%, rgba(45,106,159,0.4) 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 580px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 1.4rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 2px;
+    background: var(--dorado);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1.15;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--dorado);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 440px;
+    margin-bottom: 2.2rem;
+    line-height: 1.75;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--dorado);
+    color: var(--azul-profundo);
+    padding: 0.85rem 2rem;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--dorado-claro); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--blanco);
+    padding: 0.85rem 2rem;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--blanco); }
+
+  .hero-stats {
+    position: absolute; bottom: 2.5rem; right: 5%; z-index: 2;
+    display: flex; gap: 2.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--dorado);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ── SECCIÓN SERVICIOS ── */
+  .section-servicios {
+    background: var(--gris-bg);
+    padding: 6rem 5%;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 0.8rem;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: '';
+    display: block; width: 24px; height: 1.5px;
+    background: var(--dorado);
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--azul-profundo);
+    font-weight: 700;
+  }
+  .section-header p {
+    margin-top: 0.8rem;
+    color: var(--gris-texto);
+    font-size: 1rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card-servicio {
+    background: var(--blanco);
+    border-radius: 6px;
+    padding: 2rem 1.8rem;
+    border: 1px solid var(--gris-linea);
+    border-top: 3px solid var(--azul-medio);
+    transition: box-shadow 0.25s, transform 0.2s, border-top-color 0.2s;
+    cursor: default;
+  }
+  .card-servicio:hover {
+    box-shadow: 0 8px 32px rgba(27,58,92,0.12);
+    transform: translateY(-3px);
+    border-top-color: var(--dorado);
+  }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--gris-bg);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+  }
+
+  .card-servicio h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--azul-profundo);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .card-servicio p {
+    font-size: 0.875rem;
+    color: var(--gris-texto);
+    line-height: 1.7;
+  }
+
+  /* ── SECCIÓN PROCESO ── */
+  .section-proceso {
+    background: var(--azul-profundo);
+    padding: 6rem 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-proceso::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(45,106,159,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,106,159,0.1) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .section-proceso .section-header h2 { color: var(--blanco); }
+  .section-proceso .section-header p { color: rgba(255,255,255,0.6); }
+
+  .proceso-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dorado);
+    opacity: 0.4;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--blanco);
+    margin-bottom: 0.5rem;
+  }
+  .step p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  /* ── SECCIÓN CONTACTO ── */
+  .section-contacto {
+    background: var(--blanco);
+    padding: 6rem 5%;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .contacto-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    color: var(--azul-profundo);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .contacto-info p {
+    color: var(--gris-texto);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
+
+  .contacto-item {
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+  .contacto-item-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    background: var(--gris-bg);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .contacto-item-text strong {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--azul-profundo);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .contacto-item-text span {
+    font-size: 0.9rem;
+    color: var(--gris-texto);
+  }
+
+  .contacto-form {
+    background: var(--gris-bg);
+    padding: 2.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--gris-linea);
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--azul-profundo);
+    margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1.5px solid var(--gris-linea);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--negro-suave);
+    background: var(--blanco);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--azul-medio);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-form {
+    width: 100%;
+    background: var(--azul-profundo);
+    color: var(--blanco);
+    padding: 0.9rem;
+    border: none; border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-form:hover { background: var(--azul-medio); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F2236;
+    padding: 2rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    border-top: 2px solid var(--dorado);
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--blanco);
+  }
+  .footer-brand span { color: var(--dorado); }
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-stats { position: static; margin-top: 3rem; justify-content: flex-start; }
+    .hero { flex-direction: column; justify-content: center; padding-top: 90px; padding-bottom: 3rem; }
+    .contacto-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero::after { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CONSE <span>PREC</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Metodología</a></li>
+    <li><a href="#contacto" class="nav-cta">Consulta gratuita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Ingeniero Civil Profesional</div>
+    <h1>Soluciones de <em>ingeniería</em> que construyen confianza</h1>
+    <p>Ofrezco servicios técnicos especializados en diseño estructural, gestión de obras y consultoría, con rigor profesional y compromiso con cada proyecto.</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Ver servicios</a>
+      <a href="#contacto" class="btn-secondary">Solicitar cotización</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Años de experiencia</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">200+</span>
+      <span class="stat-label">Proyectos ejecutados</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Compromiso técnico</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section-servicios" id="servicios">
+  <div class="section-header">
+    <div class="section-eyebrow">Especialidades</div>
+    <h2>Servicios profesionales</h2>
+    <p>Cada proyecto es abordado con metodología rigurosa, normativa vigente y atención personalizada.</p>
+  </div>
+
+  <div class="grid-servicios">
+
+    <div class="card-servicio">
+      <div class="card-icon">🏗️</div>
+      <h3>Diseño y Cálculo Estructural</h3>
+      <p>Modelado y cálculo de estructuras en hormigón armado, acero y mixtas. Memorias de cálculo, planos estructurales y verificación de normativa local e internacional.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">🔍</div>
+      <h3>Supervisión de Obras</h3>
+      <p>Control técnico y administrativo de obra en sus distintas etapas. Informes de avance, verificación de calidad de materiales y cumplimiento de especificaciones.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">📋</div>
+      <h3>Gestión de Proyectos</h3>
+      <p>Planificación, programación (Gantt, ruta crítica) y control de proyectos de construcción. Coordinación entre contratistas, proveedores y entidades reguladoras.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">💰</div>
+      <h3>Presupuesto de Construcción</h3>
+      <p>Elaboración de cómputos métricos, análisis de precios unitarios y presupuestos detallados. Base sólida para licitaciones, contratos y control de costos.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">🛣️</div>
+      <h3>Diseño Vial y Sanitario</h3>
+      <p>Diseño geométrico de vías urbanas y rurales, redes de agua potable, alcantarillado y drenaje pluvial conforme a normativa vigente.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">🔬</div>
+      <h3>Peritajes y Consultoría</h3>
+      <p>Informes periciales técnicos para litigios, seguros e instituciones financieras. Diagnóstico de patologías estructurales y recomendaciones de intervención.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">💧</div>
+      <h3>Cálculo Hidráulico y Sanitario</h3>
+      <p>Diseño y verificación de instalaciones hidráulicas interiores, sistemas de bombeo, tanques de almacenamiento y plantas de tratamiento de aguas residuales.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">⚡</div>
+      <h3>Cálculo Eléctrico</h3>
+      <p>Diseño de instalaciones eléctricas de baja y media tensión, dimensionamiento de tableros, conductores y sistemas de puesta a tierra en proyectos de construcción.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">📊</div>
+      <h3>Presupuestos y Valuaciones</h3>
+      <p>Elaboración de presupuestos referenciales y valuaciones técnicas para estudios de factibilidad, refinanciamientos y gestiones ante entidades bancarias.</p>
+    </div>
+
+    <div class="card-servicio">
+      <div class="card-icon">🏠</div>
+      <h3>Avalúos Inmobiliarios</h3>
+      <p>Determinación del valor comercial de inmuebles urbanos y rurales mediante métodos comparativos, de costo y de ingresos. Informes para bancos, notarías y juzgados.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section-proceso" id="proceso">
+  <div class="section-header">
+    <div class="section-eyebrow" style="color: var(--dorado);">Metodología de trabajo</div>
+    <h2>Cómo trabajo contigo</h2>
+    <p style="color: rgba(255,255,255,0.6);">Un proceso claro desde la consulta inicial hasta la entrega del proyecto.</p>
+  </div>
+  <div class="proceso-steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h3>Consulta inicial</h3>
+      <p>Levantamiento de requerimientos, visita técnica si corresponde y evaluación preliminar sin costo.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h3>Propuesta técnica</h3>
+      <p>Alcance, metodología, plazo de entrega y honorarios definidos con transparencia desde el inicio.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h3>Desarrollo</h3>
+      <p>Ejecución del trabajo con actualizaciones periódicas. Aplicación de normativa vigente y buenas prácticas.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <h3>Entrega y soporte</h3>
+      <p>Documentación completa, revisiones incluidas y acompañamiento post-entrega ante consultas técnicas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section-contacto" id="contacto">
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Cuéntame en qué etapa se encuentra tu proyecto y qué necesitas resolver. Ofrezco una consulta técnica inicial sin compromiso.</p>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">📍</div>
+        <div class="contacto-item-text">
+          <strong>Ubicación</strong>
+          <span>Sucre, Bolivia — atención a nivel nacional</span>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">📞</div>
+        <div class="contacto-item-text">
+          <strong>Teléfono / WhatsApp</strong>
+          <span>+591 XXXX XXXX</span>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">✉️</div>
+        <div class="contacto-item-text">
+          <strong>Correo electrónico</strong>
+          <span>ingeniero@ejemplo.com.bo</span>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-item-icon">🕐</div>
+        <div class="contacto-item-text">
+          <strong>Disponibilidad</strong>
+          <span>Lunes a viernes, 8:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" placeholder="+591 ...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="form-group">
+        <label for="servicio">Servicio de interés</label>
+        <select id="servicio">
+          <option value="">Selecciona un servicio...</option>
+          <option>Diseño y Cálculo Estructural</option>
+          <option>Supervisión de Obras</option>
+          <option>Gestión de Proyectos</option>
+          <option>Presupuesto de Construcción</option>
+          <option>Diseño Vial y Sanitario</option>
+          <option>Peritajes y Consultoría</option>
+          <option>Cálculo Hidráulico y Sanitario</option>
+          <option>Cálculo Eléctrico</option>
+          <option>Presupuestos y Valuaciones</option>
+          <option>Avalúos Inmobiliarios</option>
+          <option>Otro / Consulta general</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Descripción del proyecto</label>
+        <textarea id="mensaje" placeholder="Cuéntame brevemente en qué consiste tu proyecto o consulta..."></textarea>
+      </div>
+      <button class="btn-form" onclick="alert('Mensaje enviado. Me pondré en contacto contigo pronto.')">Enviar consulta</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Ing. <span>Civil</span> — Servicios Profesionales</div>
+  <p>© 2026 · Sucre, Bolivia · Matrícula profesional vigente</p>
+</footer>
+
+</body>
+</html>
+
